@@ -95,3 +95,42 @@ dialog form{display:flex;flex-direction:column;max-height:94vh;border-radius:26p
   .tr{grid-template-columns:76px 1fr auto;gap:12px;padding:16px}.tr.th{display:none}.tr .c,.tr .p{display:none}.thumb{width:68px;height:68px}.tr .av{grid-column:2}.tr .acts{grid-column:1/-1;justify-content:flex-start}
   .two-col{grid-template-columns:1fr;gap:20px}.dbody,.dh,.df{padding-inline:20px}.grid2{grid-template-columns:1fr}.drop{aspect-ratio:16/10}.alerts{right:12px;left:12px;width:auto}
 }
+/* Мобиль телефонлар учун тўлиқ адаптив дизайн */
+@media (max-width: 480px) {
+    /* Экрандан чиқиб кетишни бутунлай тақиқлаш */
+    html, body, main, section {
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Админ менюсини (Messages, Products) Инстаграм сторисидек суриладиган қилиш */
+    nav, .admin-nav, [class*="nav"] {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        width: 100% !important;
+        gap: 8px !important;
+        padding: 10px !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    nav button, nav a, .admin-nav button {
+        white-space: nowrap !important;
+        flex-shrink: 0 !important;
+    }
+
+    /* New, In progress, Complete блокларини пастма-паст тушириш */
+    .stats-grid, .grid, [class*="grid"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+        width: 100% !important;
+    }
+
+    .card, .stat-card, [class*="card"] {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+}
