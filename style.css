@@ -118,3 +118,44 @@ form h3{font:700 22px var(--fd);margin:4px 0 10px}
 #rail::-webkit-scrollbar {
     display: none !important; /* Chrome ва Safari учун скроллни яшириш */
 }
+/* Админ панелни телефонларга мукаммал мослаштириш */
+@media (max-width: 768px) {
+    /* Тепа қисм (Шапка) ва логотипни тўғирлаш */
+    header, .admin-header, [class*="header"] {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 15px !important;
+        padding: 15px !important;
+    }
+
+    /* Админ меню тугмаларини (Messages, Products, Categories) суриладиган қилиш */
+    .admin-nav, nav, [class*="nav"] {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        width: 100% !important;
+        justify-content: flex-start !important;
+        padding-bottom: 10px !important;
+        gap: 10px !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .admin-nav button, .admin-nav a, nav a, nav button {
+        white-space: nowrap !important; /* Матнлар пастга тушиб кетмайди */
+        flex-shrink: 0 !important;
+    }
+
+    /* Оқ карточкалар ва блоклар телефон экранидан чиқиб кетмаслиги учун */
+    .container, main, section, .card, .stat-card, [class*="card"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Статистика блокларини (New, In progress, Complete) битта қаторда эмас, пастма-паст чиқариш */
+    .stats-grid, .grid, [class*="grid"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 15px !important;
+    }
+}
