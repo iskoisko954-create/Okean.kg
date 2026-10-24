@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>OKEAN KAFE · Administration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('okean.theme')||'light'}catch(e){}</script>
+</head>
+<body>
+<div id="demo" class="banner" hidden></div>
+
+<!-- Sign-in. Nothing below this block is rendered or loaded until the administrator is authenticated. -->
+<main id="gate" class="gate" hidden>
+  <section class="gate-art"><div><p class="gate-brand">OKEAN <i>KAFE</i></p><p class="gate-sub">Administration</p></div></section>
+  <section class="gate-form">
+    <form id="lf" novalidate>
+      <h1>Welcome back</h1><p class="lead">Sign in to manage the menu and incoming orders.</p>
+      <label class="fld" id="emailRow"><span>Email</span><input name="email" type="email" autocomplete="username"></label>
+      <label class="fld"><span>Password</span><input name="pw" type="password" autocomplete="current-password" required></label>
+      <p id="lerr" class="err" role="alert"></p>
+      <button class="btn lg" type="submit">Sign in</button>
+    </form>
+  </section>
+</main>
+
+<div id="shell" class="shell" hidden>
+  <aside class="side">
+    <div class="logo"><b>OKEAN <i>KAFE</i></b><small>Administration</small></div>
+    <nav class="nav" id="nav">
+      <button data-view="messages" class="on"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7.5 8.5 6 8.5-6"/></svg>Messages<span id="badge" class="badge" hidden></span></button>
+      <button data-view="products"><svg viewBox="0 0 24 24"><path d="M7 3v8M4 3v5a3 3 0 0 0 3 3 3 3 0 0 0 3-3V3M7 11v10M17 3c-2 2-3.2 5-3.2 8H17v10"/></svg>Products</button>
+      <button data-view="categories"><svg viewBox="0 0 24 24"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.2"/></svg>Categories</button>
+    </nav>
+    <div class="side-f"><span id="mode" class="chip"></span><a href="index.html" target="_blank" rel="noopener">View customer menu ↗</a><button id="out" class="btn ghost">Sign out</button></div>
+  </aside>
+
+  <main class="main">
+    <section id="v-messages" class="view">
+      <header class="vh"><div><h1>Messages</h1><p class="lead">Incoming orders from customers. This page updates live and alerts you the moment a new one arrives.</p></div></header>
+      <div class="stats" id="stats"></div>
+      <div class="inbox">
+        <div class="ilist"><div class="filters" id="filters"></div><div id="olist"></div></div>
+        <div class="idetail" id="detail"></div>
+      </div>
+    </section>
+
+    <section id="v-products" class="view" hidden>
+      <header class="vh"><div><h1>Products</h1><p class="lead">Add, edit and remove dishes. Changes reach the customer menu instantly.</p></div>
+        <div class="vh-a"><button id="sample" class="btn ghost">Load sample menu</button><button id="addP" class="btn">Add product</button></div></header>
+      <div class="table"><div class="tr th"><span></span><span>Product</span><span>Category</span><span>Price</span><span>Available</span><span></span></div><div id="plist"></div></div>
+    </section>
+
+    <section id="v-categories" class="view" hidden>
+      <header class="vh"><div><h1>Categories</h1><p class="lead">Organise the menu. The order number controls how categories appear to customers.</p></div>
+        <div class="vh-a"><button id="addC" class="btn">Add category</button></div></header>
+      <div id="clist" class="cgrid"></div>
+    </section>
+  </main>
+</div>
+
+<div id="alerts" class="alerts" aria-live="assertive"></div>
+
+<dialog id="pd"><form id="pf" novalidate>
+  <header class="dh"><h2 id="pt">Product</h2><button type="button" class="x" data-close="pd" aria-label="Close">✕</button></header>
+  <div class="dbody two-col">
+    <div>
+      <span class="lbl">Photo</span>
+      <label class="drop" id="drop"><img id="prev" alt="" hidden><span id="dropText">Tap to take a photo or choose from your gallery</span><input id="file" type="file" accept="image/*" hidden></label>
+    </div>
+    <div>
+      <div class="grid2"><label class="fld"><span>Category</span><select name="cat" required></select></label><label class="fld"><span>Price (KGS)</span><input name="price" type="number" min="0" step="1" required></label></div>
+      <label class="fld"><span>Name · English</span><input name="n_en" maxlength="80" required></label>
+      <label class="fld"><span>Name · Русский</span><input name="n_ru" maxlength="80"></label>
+      <label class="fld"><span>Name · Кыргызча</span><input name="n_ky" maxlength="80"></label>
+      <label class="fld"><span>Description · English</span><textarea name="d_en" rows="2" maxlength="200"></textarea></label>
+      <label class="fld"><span>Description · Русский</span><textarea name="d_ru" rows="2" maxlength="200"></textarea></label>
+      <label class="fld"><span>Description · Кыргызча</span><textarea name="d_ky" rows="2" maxlength="200"></textarea></label>
+      <label class="switch"><input type="checkbox" name="available" checked><i></i><span>Available to order</span></label>
+    </div>
+  </div>
+  <footer class="df"><p id="perr" class="err"></p><button type="button" class="btn ghost" data-close="pd">Cancel</button><button type="submit" class="btn" id="psave">Save product</button></footer>
+</form></dialog>
+
+<dialog id="cd"><form id="cf" novalidate>
+  <header class="dh"><h2 id="ct">Category</h2><button type="button" class="x" data-close="cd" aria-label="Close">✕</button></header>
+  <div class="dbody">
+    <label class="fld"><span>Name · English</span><input name="n_en" maxlength="40" required></label>
+    <div class="grid2"><label class="fld"><span>Name · Русский</span><input name="n_ru" maxlength="40"></label><label class="fld"><span>Name · Кыргызча</span><input name="n_ky" maxlength="40"></label></div>
+    <span class="lbl">Icon</span><div id="icons" class="icons"></div>
+    <label class="fld"><span>Display order (1 appears first)</span><input name="sort" type="number" min="0" value="10"></label>
+  </div>
+  <footer class="df"><p id="cerr" class="err"></p><button type="button" class="btn ghost" data-close="cd">Cancel</button><button type="submit" class="btn">Save category</button></footer>
+</form></dialog>
+<div id="toast" role="status"></div>
+<script type="module" src="admin.js"></script>
+</body>
+</html>

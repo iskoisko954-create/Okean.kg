@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ky" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>OKEAN KAFE</title>
+
+<meta name="theme-color" content="#0A3A63">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('okean.theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}catch(e){}</script>
+</head>
+<body class="intro">
+
+<div id="splash" aria-hidden="true">
+  <i class="pn pt"></i><i class="pn pb"></i>
+  <div class="sc">
+    <svg class="table" viewBox="0 0 280 190" width="260" height="176">
+      <g fill="none" stroke="#D2AC5B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle class="dr" style="--d:.05s" pathLength="1" cx="140" cy="95" r="66"/>
+        <circle class="dr" style="--d:.3s" pathLength="1" cx="140" cy="95" r="48"/>
+        <path class="dr" style="--d:.45s" pathLength="1" d="M44 38v26a9 9 0 0 0 18 0V38M53 38v30M53 73v77"/>
+        <path class="dr" style="--d:.6s" pathLength="1" d="M228 38c14 12 14 52 0 64v48"/>
+      </g>
+    </svg>
+    <div class="wm"></div>
+    <p class="rule"></p>
+  </div>
+</div>
+<script>document.querySelector('.wm').innerHTML=[...'OKEAN KAFE'].map(function(c,i){return '<span style="--i:'+i+'">'+(c===' '?'&nbsp;':c)+'</span>'}).join('')</script>
+
+<div id="demo" class="banner" hidden></div>
+
+<header class="top">
+  <div class="bar">
+    <a class="brand" href="./">OKEAN <i>KAFE</i></a>
+    <div class="tools">
+      <div class="seg" id="lang" role="group" aria-label="Language"></div>
+      <button id="theme" class="round" data-ia="theme" aria-label="Theme">
+        <svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg>
+      </button>
+    </div>
+  </div>
+  <label class="search">
+    <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+    <input id="q" type="search" data-ip="search" autocomplete="off">
+  </label>
+</header>
+
+<nav id="rail" class="rail" aria-label="Categories"></nav>
+
+<main>
+  <div class="sec"><h2 id="secTitle"></h2><span id="secCount"></span></div>
+  <div id="grid" class="grid"></div>
+  <p id="none" class="none" hidden data-i="none"></p>
+</main>
+<footer><span>OKEAN KAFE</span><a href="tel:+996504111171">+996 504 111 171</a></footer>
+
+<button id="bar" class="cartbar" hidden></button>
+<div id="shade"></div>
+<aside id="sheet" aria-label="Order">
+  <div class="sh-h"><h2 id="shTitle" data-i="yourOrder"></h2><button id="x" class="round" data-ia="close" aria-label="Close">✕</button></div>
+  <div class="sh-b">
+    <div id="cartView">
+      <div id="lines"></div>
+      <p id="empty" class="none" data-i="emptyCart"></p>
+      <form id="f" novalidate>
+        <div class="tot"><span data-i="total"></span><b id="tot"></b></div>
+        <h3 data-i="details"></h3>
+        <fieldset class="opt"><legend data-i="how"></legend>
+          <label><input type="radio" name="type" value="delivery" checked><span data-i="delivery"></span></label>
+          <label><input type="radio" name="type" value="pickup"><span data-i="pickup"></span></label>
+          <label><input type="radio" name="type" value="dine"><span data-i="dine"></span></label>
+        </fieldset>
+        <label class="fld"><span data-i="name"></span><input name="name" maxlength="80" autocomplete="name"></label>
+        <label class="fld"><span data-i="phone"></span><input name="phone" type="tel" maxlength="30" autocomplete="tel" placeholder="+996 …"></label>
+        <label class="fld" id="addr"><span data-i="address"></span><input name="address" maxlength="200" autocomplete="street-address"></label>
+        <label class="fld"><span data-i="note"></span><input name="note" maxlength="200"></label>
+        <button class="place" type="submit" id="place"><span data-i="place"></span></button>
+      </form>
+    </div>
+    <div id="doneView" class="done" hidden>
+      <svg viewBox="0 0 52 52" width="72" height="72"><circle class="dc" cx="26" cy="26" r="24" pathLength="1"/><path class="dk" d="M15 27l7 7 15-16" pathLength="1"/></svg>
+      <h3 data-i="thanks"></h3><p data-i="thanksText"></p>
+      <p class="code"><span data-i="code"></span> <b id="code"></b></p>
+      <button class="place" id="back" data-i="back"></button>
+    </div>
+  </div>
+</aside>
+<div id="toast" role="status"></div>
+<!-- Сайтнинг энг пастки қисмидаги чиройли Админ тугмаси -->
+<footer style="text-align: center; padding: 30px 20px; background-color: var(--bg, #0d0d0d); margin-top: 50px; border-top: 1px solid rgba(255,152,0,0.1);">
+    <a href="admin.html" class="admin-login-btn">
+        Админ Панель
+    </a>
+</footer>
+<script type="module" src="script.js"></script>
+<script>if('serviceWorker' in navigator&&location.protocol.indexOf('http')===0)addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})</script>
+</body>
+</html>
